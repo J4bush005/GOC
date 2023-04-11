@@ -1,17 +1,20 @@
+SpriteManager _SM;
 
-Sprite s;
-
-//this function runs one time at the beginning
-//think... pre-code
 void setup() {
-    size(800, 600);
-    s = new Sprite(width/2, height/2, 50, 50);
+    size(1024, 768);
+    _SM = new SpriteManager();
+    _SM.spawn(new Invader(250, 50));
 }
 
-//always runs at the speed of frame rate
-//think... FPS
 void draw() {
-    // a circle that follows the mouse, 50x50, WxH
-    s.update();
-    s.display();
+    background(0);
+    _SM.manage();
+}
+
+void keyPressed() {
+    _SM.player.keyDown();
+}
+
+void keyReleased() {
+    _SM.player.keyUp();
 }
